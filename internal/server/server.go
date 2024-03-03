@@ -1,6 +1,7 @@
 package server
 
 import (
+	"encoding/json"
 	"image-service/internal/config"
 	"image-service/internal/database"
 	"log"
@@ -58,4 +59,15 @@ func (s *Server) middlewares(next http.Handler) http.Handler {
 func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 	log.Println("Home page accessed")
 	w.Write([]byte("Hello from HandleFunc #1"))
+}
+
+func (s *Server) httpError(w *http.ResponseWriter, err string, statusCode int) {
+	(*w).Header().Set("Content-Type", "application/json")
+	(*w).WriteHeader(statusCode)
+	res := struct {
+		Message string `json:"message"`
+		Error   string `json:"error"`
+	}{Message: "Failed", Error: err}
+	json.NewEncoder(*w).Encode(res)
+	return
 }

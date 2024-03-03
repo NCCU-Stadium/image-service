@@ -13,7 +13,7 @@ import (
 func (s *Server) uploadImage(w http.ResponseWriter, r *http.Request) {
 	// Check if the request is a POST request
 	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		s.httpError(&w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -51,7 +51,7 @@ func (s *Server) uploadImage(w http.ResponseWriter, r *http.Request) {
 	// Insert the image into the database
 	primitiveId, err := s.database.Insert(image, collectionName)
 	if err != nil {
-		http.Error(w, "Error inserting image data into MongoDB", http.StatusInternalServerError)
+		s.httpError(&w, "Error inserting image data into MongoDB", http.StatusInternalServerError)
 		return
 	}
 
@@ -69,7 +69,7 @@ func (s *Server) uploadImage(w http.ResponseWriter, r *http.Request) {
 func (s *Server) displayImage(w http.ResponseWriter, r *http.Request) {
 	// Check if the request is a GET request
 	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		s.httpError(&w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -89,7 +89,7 @@ func (s *Server) displayImage(w http.ResponseWriter, r *http.Request) {
 	imageData := result.Data
 	_, err = w.Write(imageData)
 	if err != nil {
-		http.Error(w, "Error writing image data to response", http.StatusInternalServerError)
+		s.httpError(&w, "Error writing image data to response", http.StatusInternalServerError)
 	}
 }
 
@@ -97,7 +97,7 @@ func (s *Server) displayImage(w http.ResponseWriter, r *http.Request) {
 func (s *Server) deleteImage(w http.ResponseWriter, r *http.Request) {
 	// Check if the request is a DELETE request
 	if r.Method != http.MethodDelete {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		s.httpError(&w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -109,7 +109,7 @@ func (s *Server) deleteImage(w http.ResponseWriter, r *http.Request) {
 	// Delete the image from MongoDB by _id
 	deletedCount, err := s.database.DeleteById(targetId, collectionName)
 	if err != nil {
-		http.Error(w, "Error deleting image from MongoDB", http.StatusInternalServerError)
+		s.httpError(&w, "Error deleting image from MongoDB", http.StatusInternalServerError)
 	}
 
 	// Respond with success Message
