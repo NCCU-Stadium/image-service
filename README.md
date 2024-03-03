@@ -38,9 +38,10 @@
 
 ##### Responses
 
-> | http code | content-type       | response                                                              |
-> | --------- | ------------------ | --------------------------------------------------------------------- |
-> | `200`     | `application/json` | `{"message": "Image uploaded successfully", "id": "id of the image"}` |
+> | http code    | content-type       | response                                                              |
+> | ------------ | ------------------ | --------------------------------------------------------------------- |
+> | `200`        | `application/json` | `{"message": "Image uploaded successfully", "id": "id of the image"}` |
+> | `405`, `500` | `application/json` | `{"message": "Failed", "error": "error message"}`                     |
 
 </details>
 
@@ -60,9 +61,10 @@
 
 ##### Responses
 
-> | http code | content-type |
-> | --------- | ------------ |
-> | `200`     | `image/*`    |
+> | http code    | content-type       |                                                   |
+> | ------------ | ------------------ | ------------------------------------------------- |
+> | `200`        | `image/*`          |                                                   |
+> | `405`, `500` | `application/json` | `{"message": "Failed", "error": "error message"}` |
 
 </details>
 
@@ -82,8 +84,9 @@
 
 ##### Responses
 
-> | http code | content-type       | response                                                               |
-> | --------- | ------------------ | ---------------------------------------------------------------------- |
-> | `200`     | `application/json` | `{"message": "Deleted %d documents", "id": "Id of deleted documents"}` |
+> | http code    | content-type       | response                                                               |
+> | ------------ | ------------------ | ---------------------------------------------------------------------- |
+> | `200`        | `application/json` | `{"message": "Deleted %d documents", "id": "Id of deleted documents"}` |
+> | `405`, `500` | `application/json` | `{"message": "Failed", "error": "error message"}`                      |
 
 </details>
