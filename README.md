@@ -50,7 +50,7 @@
 ### Display images
 
 <details>
-<summary><code>POST</code> <code><b>/upload</b></code> <code>(Upload image to image server)</code></summary>
+<summary><code>GET</code> <code><b>/upload</b></code> <code>(Upload image to image server)</code></summary>
 
 ##### Params
 
