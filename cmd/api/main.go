@@ -9,7 +9,7 @@ import (
 )
 
 // portNumber is the port number that the server will listen on
-const portNumber = ":8000"
+const portNumber = ":7996"
 
 // main is the entry point for the application
 func main() {

@@ -1,6 +1,6 @@
 # image-service
 
-- RESTful APIs running on `localhost:80`
+- RESTful APIs running on `localhost:7996`
 
 ---
 
